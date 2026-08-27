@@ -1,0 +1,21 @@
+package connection
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/jackc/pgx/v5"
+)
+
+func ConCheck() {
+	ctx := context.Background()
+
+	conn, err := pgx.Connect(ctx, "postgres://postgres:1488@localhost:5432/postgres")
+	if err != nil {
+		panic(err)
+	}
+	if err := conn.Ping(ctx); err != nil {
+		panic(err)
+	}
+	fmt.Println("Успешное подключение к БД")
+}
